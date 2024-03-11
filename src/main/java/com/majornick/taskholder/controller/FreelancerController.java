@@ -1,6 +1,7 @@
 package com.majornick.taskholder.controller;
 
 import com.majornick.taskholder.dto.FreelancerDTO;
+import com.majornick.taskholder.service.FreelancerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -9,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 @RequestMapping("/freelancers")
 public class FreelancerController {
-
+    private FreelancerService freelancerService;
     @GetMapping
     ResponseEntity<?> getFreelancers() {
         return ResponseEntity.ok(5);

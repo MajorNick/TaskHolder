@@ -15,6 +15,10 @@ public class ClientDTO {
         this(new Client());
     }
 
+    public Client toClient() {
+        return client;
+    }
+
     public long getId() {
         return client.getId();
     }
@@ -36,11 +40,11 @@ public class ClientDTO {
         setDateOfRegister(dateOfRegister);
     }
 
-    public double getAmountPaid() {
+    public Double getAmountPaid() {
         return client.getAmountPaid();
     }
 
-    public void setAmountPaid(double amountPaid) {
+    public void setAmountPaid(Double amountPaid) {
         client.setAmountPaid(amountPaid);
     }
 }

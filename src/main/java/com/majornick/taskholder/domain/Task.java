@@ -18,7 +18,7 @@ public class Task {
 
     private String description;
 
-    private double salary;
+    private Double salary;
 
     @Enumerated(value = EnumType.STRING)
     private TaskState state;

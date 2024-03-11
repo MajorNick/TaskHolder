@@ -1,6 +1,7 @@
 package com.majornick.taskholder.controller;
 
 import com.majornick.taskholder.dto.TaskDTO;
+import com.majornick.taskholder.service.TaskService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/tasks")
 @RequiredArgsConstructor
 public class TaskController {
+    private final TaskService taskService;
     @GetMapping
     ResponseEntity<?> getTasks() {
         return ResponseEntity.ok(5);
