@@ -23,6 +23,7 @@ public class Task {
     @Enumerated(value = EnumType.STRING)
     private TaskState state;
 
+
     @ManyToOne
     private Freelancer performer;
 

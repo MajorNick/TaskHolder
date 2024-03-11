@@ -14,4 +14,6 @@ public class Freelancer extends User{
     private double amountReceived;
     @OneToMany(mappedBy = "performer")
     private List<Task> taskHistory;
+
+
 }

@@ -11,21 +11,28 @@ import org.springframework.web.bind.annotation.*;
 public class FreelancerController {
 
     @GetMapping
-    ResponseEntity<?> getFreelancers(){
+    ResponseEntity<?> getFreelancers() {
         return ResponseEntity.ok(5);
     }
+
     @GetMapping("/{freelancerId}")
-    ResponseEntity<?> getFreelancer(@PathVariable long freelancerId){
+    ResponseEntity<?> getFreelancer(@PathVariable long freelancerId) {
         return ResponseEntity.ok(freelancerId);
     }
+
     @PutMapping("/{freelancerId}")
-    ResponseEntity<?> updateFreelancer(@PathVariable long freelancerId, FreelancerDTO freelancerDTO){
+    ResponseEntity<?> updateFreelancer(@PathVariable long freelancerId, FreelancerDTO freelancerDTO) {
         return ResponseEntity.ok(freelancerId);
     }
 
     @PostMapping("/")
-    ResponseEntity<?> postFreelancer(FreelancerDTO freelancerDTO){
+    ResponseEntity<?> postFreelancer(FreelancerDTO freelancerDTO) {
         return ResponseEntity.ok(freelancerDTO);
+    }
+
+    @GetMapping("/{freelancerId}/tasks")
+    ResponseEntity<?> getFreelancerHistory(@PathVariable long freelancerId) {
+        return ResponseEntity.ok(freelancerId);
     }
 
 

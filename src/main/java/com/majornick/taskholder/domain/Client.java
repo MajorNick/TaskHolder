@@ -14,4 +14,5 @@ public class Client extends User{
     private double amountPaid;
     @OneToMany(mappedBy = "assigner")
     private List<Task> assignedTaskHistory;
+
 }
