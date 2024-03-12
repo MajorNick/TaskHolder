@@ -37,4 +37,5 @@ public class ClientController {
     ResponseEntity<?> getClientHistory(@PathVariable long clientId) {
         return ResponseEntity.ok(clientService.getClientHistory(clientId));
     }
+
 }

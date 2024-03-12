@@ -50,6 +50,6 @@ public class TaskDTO {
     public void setState(TaskState state) {
         task.setState(state);
     }
-
+    
 
 }

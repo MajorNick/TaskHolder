@@ -14,6 +14,9 @@ public class FreelancerDTO {
     public FreelancerDTO() {
         freelancer = new Freelancer();
     }
+    public Freelancer toFreelancer(){
+        return freelancer;
+    }
 
     public long getId() {
         return freelancer.getId();
@@ -27,11 +30,11 @@ public class FreelancerDTO {
         freelancer.setDateOfRegister(dateOfRegister);
     }
 
-    public double getAmountReceived() {
+    public Double getAmountReceived() {
         return freelancer.getAmountReceived();
     }
 
-    public void setAmountReceived(double amountReceived) {
+    public void setAmountReceived(Double amountReceived) {
         freelancer.setAmountReceived(amountReceived);
     }
 }
