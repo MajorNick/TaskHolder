@@ -3,6 +3,7 @@ package com.majornick.taskholder.controller;
 import com.majornick.taskholder.dto.TaskDTO;
 import com.majornick.taskholder.service.TaskService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,22 +14,22 @@ public class TaskController {
     private final TaskService taskService;
     @GetMapping
     ResponseEntity<?> getTasks() {
-        return ResponseEntity.ok(5);
+        return ResponseEntity.ok(taskService.getTasks());
     }
 
     @GetMapping("/{taskId}")
     ResponseEntity<?> getTask(@PathVariable long taskId) {
-        return ResponseEntity.ok(taskId);
+        return ResponseEntity.ok(taskService.getTaskById(taskId));
     }
 
     @PutMapping("/{taskId}")
     ResponseEntity<?> updateTask(@PathVariable long taskId, TaskDTO taskDTO) {
-        return ResponseEntity.ok(taskDTO);
+        return ResponseEntity.ok(taskService.updateTask(taskId,taskDTO));
     }
 
     @PostMapping("/")
     ResponseEntity<?> postTask(TaskDTO taskDTO) {
-        return ResponseEntity.ok(taskDTO);
+        return ResponseEntity.status(HttpStatus.CREATED).body(taskService.postTask(taskDTO));
     }
 
 }

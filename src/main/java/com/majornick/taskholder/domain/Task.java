@@ -1,9 +1,11 @@
 package com.majornick.taskholder.domain;
 
+import com.majornick.taskholder.dto.TaskDTO;
 import com.majornick.taskholder.enums.TaskState;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.transaction.annotation.Transactional;
 
 @Entity
 @Getter
@@ -29,4 +31,21 @@ public class Task {
 
     @ManyToOne
     private Freelancer assigner;
+
+    @Transactional
+    public void update(TaskDTO taskDTO) {
+        var task  = taskDTO.toTask();
+        if(task.getName() != null){
+            setName(task.getName());
+        }
+        if(task.description != null){
+            setDescription(task.getDescription());
+        }
+        if(task.getSalary() != null){
+            setSalary(task.getSalary());
+        }
+        if(task.getState() != null){
+            setState(task.getState());
+        }
+    }
 }
