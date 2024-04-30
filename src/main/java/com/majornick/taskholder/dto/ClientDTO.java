@@ -33,11 +33,11 @@ public class ClientDTO {
     }
 
     public LocalDate getDateOfRegister() {
-        return getDateOfRegister();
+        return client.getDateOfRegister();
     }
 
     public void setDateOfRegister(LocalDate dateOfRegister) {
-        setDateOfRegister(dateOfRegister);
+        client.setDateOfRegister(dateOfRegister);
     }
 
     public Double getAmountPaid() {
@@ -47,4 +47,5 @@ public class ClientDTO {
     public void setAmountPaid(Double amountPaid) {
         client.setAmountPaid(amountPaid);
     }
+
 }

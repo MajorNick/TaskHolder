@@ -7,6 +7,8 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
+
 @Entity
 @Getter
 @Setter
@@ -21,6 +23,7 @@ public class Task {
     private String description;
 
     private Double salary;
+    private LocalDate deadline;
 
     @Enumerated(value = EnumType.STRING)
     private TaskState state;
@@ -30,7 +33,7 @@ public class Task {
     private Freelancer performer;
 
     @ManyToOne
-    private Freelancer assigner;
+    private Client assigner;
 
     @Transactional
     public void update(TaskDTO taskDTO) {

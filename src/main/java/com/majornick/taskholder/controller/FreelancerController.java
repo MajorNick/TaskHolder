@@ -36,5 +36,4 @@ public class FreelancerController {
         return ResponseEntity.ok(freelancerService.getFreelancerTaskHistory(freelancerId));
     }
 
-
 }

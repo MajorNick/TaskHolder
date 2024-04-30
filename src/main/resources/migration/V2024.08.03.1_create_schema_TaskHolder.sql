@@ -1,1 +1,1 @@
-create schema if not exists taskholder;
+create schema if not exists task_holder;

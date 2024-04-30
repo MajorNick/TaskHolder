@@ -4,5 +4,6 @@ public enum TaskState {
     WAITING,
     RUNNING,
     FAILED,
-    ENDED
+    ENDED,
+    CANCELLED
 }

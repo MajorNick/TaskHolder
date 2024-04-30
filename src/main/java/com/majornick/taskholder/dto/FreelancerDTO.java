@@ -34,7 +34,16 @@ public class FreelancerDTO {
         return freelancer.getAmountReceived();
     }
 
+
     public void setAmountReceived(Double amountReceived) {
         freelancer.setAmountReceived(amountReceived);
+    }
+
+    public String getUsername() {
+        return freelancer.getUsername();
+    }
+
+    public void setUsername(String username) {
+        freelancer.setUsername(username);
     }
 }

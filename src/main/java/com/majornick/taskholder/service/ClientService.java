@@ -1,9 +1,11 @@
 package com.majornick.taskholder.service;
 
 import com.majornick.taskholder.domain.Client;
+import com.majornick.taskholder.domain.Task;
 import com.majornick.taskholder.dto.ClientDTO;
 import com.majornick.taskholder.dto.TaskDTO;
 import com.majornick.taskholder.repository.ClientRepo;
+import com.majornick.taskholder.repository.TaskRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -16,6 +18,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ClientService {
     private final ClientRepo clientRepo;
+    private final TaskRepo taskRepo;
 
     @Transactional(readOnly = true)
     public List<ClientDTO> getClients() {
@@ -35,6 +38,13 @@ public class ClientService {
         Client client = getById(clientId).toClient();
         client.updateClient(clientDTO.toClient());
         return new ClientDTO(client);
+    }
+    @Transactional
+    public TaskDTO postTask(TaskDTO taskDTO,long clientId) {
+        Task task = taskDTO.toTask();
+        Client client = getById(clientId).toClient();
+        task.setAssigner(client);
+        return new TaskDTO(taskRepo.save(task));
     }
 
     @Transactional

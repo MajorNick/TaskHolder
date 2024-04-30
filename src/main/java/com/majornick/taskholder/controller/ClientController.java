@@ -1,8 +1,11 @@
 package com.majornick.taskholder.controller;
 
 import com.majornick.taskholder.dto.ClientDTO;
+import com.majornick.taskholder.dto.TaskDTO;
 import com.majornick.taskholder.service.ClientService;
+import com.majornick.taskholder.service.TaskService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -36,6 +39,11 @@ public class ClientController {
     @GetMapping("/{clientId}/tasks")
     ResponseEntity<?> getClientHistory(@PathVariable long clientId) {
         return ResponseEntity.ok(clientService.getClientHistory(clientId));
+    }
+
+    @PostMapping("/{clientId}/tasks")
+    ResponseEntity<?> postTask(TaskDTO taskDTO,@PathVariable("clientId") long clientId) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(clientService.postTask(taskDTO,clientId));
     }
 
 }

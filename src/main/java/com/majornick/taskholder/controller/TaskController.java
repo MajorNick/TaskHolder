@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
+
 @RestController
 @RequestMapping("/tasks")
 @RequiredArgsConstructor
@@ -27,9 +29,11 @@ public class TaskController {
         return ResponseEntity.ok(taskService.updateTask(taskId,taskDTO));
     }
 
-    @PostMapping("/")
-    ResponseEntity<?> postTask(TaskDTO taskDTO) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(taskService.postTask(taskDTO));
+
+
+    @PostMapping("/{taskId}/register/{freelancerId}")
+    ResponseEntity<?> registerFreelancer(@PathVariable("taskId") long taskId,@PathVariable("freelancerId") long freelancerId, @RequestParam("deadline") LocalDate deadline ){
+        return ResponseEntity.status(HttpStatus.CREATED).body(taskService.registerFreelancerOnTask(taskId,freelancerId,deadline));
     }
 
 }
