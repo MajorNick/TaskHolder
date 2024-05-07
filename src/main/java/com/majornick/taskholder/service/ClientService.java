@@ -36,8 +36,17 @@ public class ClientService {
     @Transactional
     public ClientDTO updateClient(long clientId, ClientDTO clientDTO) {
         Client client = getById(clientId).toClient();
-        client.updateClient(clientDTO.toClient());
+        updateClient(client,clientDTO.toClient());
         return new ClientDTO(client);
+    }
+    @Transactional
+    public void updateClient(Client actualClient,Client client) {
+        if (client.getUsername() != null) {
+            actualClient.setUsername(client.getUsername());
+        }
+        if (client.getAmountPaid() != null) {
+            actualClient.setAmountPaid(client.getAmountPaid());
+        }
     }
     @Transactional
     public TaskDTO postTask(TaskDTO taskDTO,long clientId) {

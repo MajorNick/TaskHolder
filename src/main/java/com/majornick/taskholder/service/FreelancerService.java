@@ -16,6 +16,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class FreelancerService {
     private final FreelancerRepo freelancerRepo;
+
     @Transactional(readOnly = true)
     public List<FreelancerDTO> getFreelancers() {
         return freelancerRepo.findAll().stream().map(FreelancerDTO::new).toList();
@@ -32,8 +33,18 @@ public class FreelancerService {
     @Transactional
     public FreelancerDTO updateFreelancer(long freelancerId, FreelancerDTO freelancerDTO) {
         Freelancer freelancer = getById(freelancerId).toFreelancer();
-        freelancer.updateFreelancer(freelancerDTO.toFreelancer());
+        updateFreelancer(freelancer, freelancerDTO.toFreelancer());
         return new FreelancerDTO(freelancer);
+    }
+
+    @Transactional
+    public void updateFreelancer(Freelancer actualFreelancer, Freelancer freelancer) {
+        if (freelancer.getUsername() != null) {
+            actualFreelancer.setUsername(freelancer.getUsername());
+        }
+        if (freelancer.getAmountReceived() != null) {
+            actualFreelancer.setAmountReceived(freelancer.getAmountReceived());
+        }
     }
 
     @Transactional

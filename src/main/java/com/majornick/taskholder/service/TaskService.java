@@ -28,17 +28,33 @@ public class TaskService {
     public TaskDTO getTaskById(long taskId) {
         return new TaskDTO(
                 taskRepo
-                .findById(taskId)
-                .orElseThrow(() ->new ResponseStatusException(HttpStatus.NOT_FOUND, "task not found")));
+                        .findById(taskId)
+                        .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "task not found")));
     }
 
     @Transactional
     public TaskDTO updateTask(long taskId, TaskDTO taskDTO) {
         Task task = getTaskById(taskId).toTask();
-        task.update(taskDTO);
+        update(task, taskDTO);
         return new TaskDTO(task);
     }
 
+    @Transactional
+    public void update(Task actualTask, TaskDTO taskDTO) {
+        var task = taskDTO.toTask();
+        if (task.getName() != null) {
+            actualTask.setName(task.getName());
+        }
+        if (task.getDescription() != null) {
+            actualTask.setDescription(task.getDescription());
+        }
+        if (task.getSalary() != null) {
+            actualTask.setSalary(task.getSalary());
+        }
+        if (task.getState() != null) {
+            actualTask.setState(task.getState());
+        }
+    }
 
     @Transactional
     public TaskDTO registerFreelancerOnTask(long taskId, long freelancerId, LocalDate deadline) {
@@ -49,4 +65,5 @@ public class TaskService {
         task.setState(TaskState.RUNNING);
         return new TaskDTO(task);
     }
+
 }
